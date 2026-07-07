@@ -1,292 +1,294 @@
 <!doctype html>
 <html lang="vi">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Room Manager - Quản lý phòng họp</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Room Manager - Quản lý phòng họp</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="app">
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <div class="brand-logo">▦</div>
-      <div>
-        <strong>Room Manager</strong>
-        <span>Room Management System</span>
-      </div>
-    </div>
-
-    <div class="menu-label">Điều hướng</div>
-    <nav class="nav">
-      <button class="nav-item active" data-view="dashboard"><span>⌂</span>Tổng quan</button>
-      <button class="nav-item" data-view="rooms"><span>▦</span>Danh sách phòng</button>
-      <button class="nav-item" data-view="history"><span>◷</span>Lịch sử sử dụng</button>
-      <button class="nav-item" data-view="bookings"><span>▤</span>Lịch đặt phòng</button>
-      <button class="nav-item" data-view="availability"><span>◉</span>Thời gian trống</button>
-    </nav>
-
-    <div class="menu-label">Hệ thống</div>
-    <nav class="nav">
-      <button class="nav-item" data-view="settings"><span>⚙</span>Cài đặt</button>
-    </nav>
-
-    <div class="role-box">
-      <strong>Vai trò hiện tại</strong>
-      <span>Meeting Manager</span>
-      <small>Quản lý phòng, lịch đặt và tình trạng sử dụng.</small>
-    </div>
-  </aside>
-
-  <main class="main">
-    <header class="topbar">
-      <button class="icon-btn mobile-menu" id="mobileMenu">☰</button>
-      <div class="page-title">
-        <h1 id="pageTitle">Tổng quan phòng họp</h1>
-        <p id="pageSubtitle">Theo dõi phòng, lịch đặt và tình trạng sử dụng.</p>
-      </div>
-      <div class="top-actions">
-        <div class="date-chip" id="dateChip"></div>
-        <div class="avatar">MM</div>
-      </div>
-    </header>
-
-    <!-- DASHBOARD -->
-    <section class="view active" id="dashboardView">
-      <div class="stats" id="stats"></div>
-
-      <div class="dashboard-grid">
-        <section class="panel">
-          <div class="panel-head">
-            <div>
-              <h2>Phòng họp</h2>
-              <p>Tình trạng vận hành của các phòng.</p>
+    <div class="app">
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-logo">▦</div>
+                <div>
+                    <strong>Room Manager</strong>
+                    <span>Room Management System</span>
+                </div>
             </div>
-            <button class="btn primary" id="dashboardAddRoom">＋ Thêm phòng</button>
-          </div>
-          <div class="room-grid" id="dashboardRooms"></div>
-        </section>
 
-        <aside class="panel">
-          <div class="panel-head">
-            <div>
-              <h2>Lịch đặt gần nhất</h2>
-              <p>Các lượt đặt phòng sắp diễn ra.</p>
+            <div class="menu-label">Điều hướng</div>
+            <nav class="nav">
+                <button class="nav-item active" data-view="dashboard"><span>⌂</span>Tổng quan</button>
+                <button class="nav-item" data-view="rooms"><span>▦</span>Danh sách phòng</button>
+                <button class="nav-item" data-view="history"><span>◷</span>Lịch sử sử dụng</button>
+                <button class="nav-item" data-view="bookings"><span>▤</span>Lịch đặt phòng</button>
+                <button class="nav-item" data-view="availability"><span>◉</span>Thời gian trống</button>
+            </nav>
+
+            <div class="menu-label">Hệ thống</div>
+            <nav class="nav">
+                <button class="nav-item" data-view="settings"><span>⚙</span>Cài đặt</button>
+            </nav>
+
+            <div class="role-box">
+                <strong>Vai trò hiện tại</strong>
+                <span>Meeting Manager</span>
+                <small>Quản lý phòng, lịch đặt và tình trạng sử dụng.</small>
             </div>
-          </div>
-          <div class="recent-list" id="recentBookings"></div>
         </aside>
-      </div>
-    </section>
 
-    <!-- ROOMS -->
-    <section class="view" id="roomsView">
-      <section class="panel">
-        <div class="panel-head">
-          <div>
-            <h2>Danh sách phòng</h2>
-            <p>Thêm, sửa, xóa và theo dõi tình trạng từng phòng.</p>
-          </div>
-          <div class="head-actions">
-            <button class="btn secondary" id="exportRooms">⇩ Xuất CSV</button>
-            <button class="btn primary" id="addRoom">＋ Thêm phòng mới</button>
-          </div>
-        </div>
+        <main class="main">
+            <header class="topbar">
+                <button class="icon-btn mobile-menu" id="mobileMenu">☰</button>
+                <div class="page-title">
+                    <h1 id="pageTitle">Tổng quan phòng họp</h1>
+                    <p id="pageSubtitle">Theo dõi phòng, lịch đặt và tình trạng sử dụng.</p>
+                </div>
+                <div class="top-actions">
+                    <div class="date-chip" id="dateChip"></div>
+                    <div class="avatar">MM</div>
+                </div>
+            </header>
 
-        <div class="toolbar four">
-          <input id="roomSearch" placeholder="Tìm theo tên, mã, vị trí, thiết bị...">
-          <select id="roomStatusFilter">
+            <!-- DASHBOARD -->
+            <section class="view active" id="dashboardView">
+                <div class="stats" id="stats"></div>
+
+                <div class="dashboard-grid">
+                    <section class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h2>Phòng họp</h2>
+                                <p>Tình trạng vận hành của các phòng.</p>
+                            </div>
+                            <button class="btn primary" id="dashboardAddRoom">＋ Thêm phòng</button>
+                        </div>
+                        <div class="room-grid" id="dashboardRooms"></div>
+                    </section>
+
+                    <aside class="panel">
+                        <div class="panel-head">
+                            <div>
+                                <h2>Lịch đặt gần nhất</h2>
+                                <p>Các lượt đặt phòng sắp diễn ra.</p>
+                            </div>
+                        </div>
+                        <div class="recent-list" id="recentBookings"></div>
+                    </aside>
+                </div>
+            </section>
+
+            <!-- ROOMS -->
+            <section class="view" id="roomsView">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Danh sách phòng</h2>
+                            <p>Thêm, sửa, xóa và theo dõi tình trạng từng phòng.</p>
+                        </div>
+                        <div class="head-actions">
+                            <button class="btn secondary" id="exportRooms">⇩ Xuất CSV</button>
+                            <button class="btn primary" id="addRoom">＋ Thêm phòng mới</button>
+                        </div>
+                    </div>
+
+                    <div class="toolbar four">
+                        <input id="roomSearch" placeholder="Tìm theo tên, mã, vị trí, thiết bị...">
+                        <select id="roomStatusFilter">
             <option value="">Tất cả trạng thái</option>
             <option value="active">Hoạt động</option>
             <option value="maintenance">Bảo trì</option>
             <option value="inactive">Ngừng sử dụng</option>
           </select>
-          <select id="roomCapacityFilter">
+                        <select id="roomCapacityFilter">
             <option value="">Mọi sức chứa</option>
             <option value="small">Dưới 10 người</option>
             <option value="medium">10–20 người</option>
             <option value="large">Trên 20 người</option>
           </select>
-          <select id="roomSort">
+                        <select id="roomSort">
             <option value="updated-desc">Cập nhật mới nhất</option>
             <option value="name-asc">Tên A–Z</option>
             <option value="capacity-desc">Sức chứa lớn nhất</option>
             <option value="capacity-asc">Sức chứa nhỏ nhất</option>
           </select>
-        </div>
+                    </div>
 
-        <div class="room-grid large" id="roomGrid"></div>
-        <div class="empty hidden" id="roomEmpty">Không tìm thấy phòng phù hợp.</div>
-      </section>
-    </section>
+                    <div class="room-grid large" id="roomGrid"></div>
+                    <div class="empty hidden" id="roomEmpty">Không tìm thấy phòng phù hợp.</div>
+                </section>
+            </section>
 
-    <!-- HISTORY -->
-    <section class="view" id="historyView">
-      <section class="panel">
-        <div class="panel-head">
-          <div>
-            <h2>Lịch sử sử dụng phòng</h2>
-            <p>Hiển thị các lượt sử dụng phòng đã kết thúc.</p>
-          </div>
-          <button class="btn secondary" id="exportHistory">⇩ Xuất CSV</button>
-        </div>
+            <!-- HISTORY -->
+            <section class="view" id="historyView">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Lịch sử sử dụng phòng</h2>
+                            <p>Hiển thị các lượt sử dụng phòng đã kết thúc.</p>
+                        </div>
+                        <button class="btn secondary" id="exportHistory">⇩ Xuất CSV</button>
+                    </div>
 
-        <div class="toolbar four">
-          <select id="historyRoom"></select>
-          <input type="date" id="historyFrom">
-          <input type="date" id="historyTo">
-          <button class="btn secondary" id="filterHistory">Lọc dữ liệu</button>
-        </div>
+                    <div class="toolbar four">
+                        <select id="historyRoom"></select>
+                        <input type="date" id="historyFrom">
+                        <input type="date" id="historyTo">
+                        <button class="btn secondary" id="filterHistory">Lọc dữ liệu</button>
+                    </div>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Ngày</th>
-                <th>Phòng</th>
-                <th>Thời gian</th>
-                <th>Thời lượng</th>
-                <th>Trạng thái</th>
-                <th>Ghi chú</th>
-              </tr>
-            </thead>
-            <tbody id="historyBody"></tbody>
-          </table>
-        </div>
-      </section>
-    </section>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Phòng</th>
+                                    <th>Thời gian</th>
+                                    <th>Thời lượng</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ghi chú</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
 
-    <!-- BOOKINGS -->
-    <section class="view" id="bookingsView">
-      <section class="panel">
-        <div class="panel-head">
-          <div>
-            <h2>Lịch đặt phòng</h2>
-            <p>Quản lý những khoảng thời gian phòng đã được đặt.</p>
-          </div>
-          <button class="btn primary" id="addBooking">＋ Đặt phòng</button>
-        </div>
+            <!-- BOOKINGS -->
+            <section class="view" id="bookingsView">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Lịch đặt phòng</h2>
+                            <p>Quản lý những khoảng thời gian phòng đã được đặt.</p>
+                        </div>
+                        <button class="btn primary" id="addBooking">＋ Đặt phòng</button>
+                    </div>
 
-        <div class="toolbar five">
-          <select id="bookingRoomFilter"></select>
-          <input type="date" id="bookingDateFilter">
-          <select id="bookingStatusFilter">
+                    <div class="toolbar five">
+                        <select id="bookingRoomFilter"></select>
+                        <input type="date" id="bookingDateFilter">
+                        <select id="bookingStatusFilter">
             <option value="">Tất cả trạng thái</option>
             <option value="upcoming">Sắp sử dụng</option>
             <option value="in-use">Đang sử dụng</option>
             <option value="completed">Đã sử dụng</option>
             <option value="cancelled">Đã hủy</option>
           </select>
-          <button class="btn secondary" id="filterBookings">Lọc</button>
-          <button class="btn ghost" id="clearBookingFilters">Xóa lọc</button>
-        </div>
+                        <button class="btn secondary" id="filterBookings">Lọc</button>
+                        <button class="btn ghost" id="clearBookingFilters">Xóa lọc</button>
+                    </div>
 
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Ngày</th>
-                <th>Phòng</th>
-                <th>Thời gian</th>
-                <th>Trạng thái</th>
-                <th>Ghi chú</th>
-                <th>Thao tác</th>
-              </tr>
-            </thead>
-            <tbody id="bookingBody"></tbody>
-          </table>
-        </div>
-      </section>
-    </section>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ngày</th>
+                                    <th>Phòng</th>
+                                    <th>Thời gian</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ghi chú</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookingBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </section>
 
-    <!-- AVAILABILITY -->
-    <section class="view" id="availabilityView">
-      <section class="panel">
-        <div class="panel-head">
-          <div>
-            <h2>Kiểm tra thời gian trống</h2>
-            <p>Chỉ hiển thị những khoảng thời gian phòng chưa được đặt.</p>
-          </div>
-        </div>
+            <!-- AVAILABILITY -->
+            <section class="view" id="availabilityView">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Kiểm tra thời gian trống</h2>
+                            <p>Chỉ hiển thị những khoảng thời gian phòng chưa được đặt.</p>
+                        </div>
+                    </div>
 
-        <div class="toolbar four">
-          <select id="availabilityRoom"></select>
-          <input type="date" id="availabilityDate">
-          <select id="availabilityDuration">
+                    <div class="toolbar four">
+                        <select id="availabilityRoom"></select>
+                        <input type="date" id="availabilityDate">
+                        <select id="availabilityDuration">
             <option value="30">30 phút</option>
             <option value="60" selected>60 phút</option>
             <option value="90">90 phút</option>
             <option value="120">120 phút</option>
           </select>
-          <button class="btn primary" id="checkAvailability">Kiểm tra</button>
-        </div>
+                        <button class="btn primary" id="checkAvailability">Kiểm tra</button>
+                    </div>
 
-        <div class="availability-content" id="availabilityContent"></div>
-      </section>
-    </section>
+                    <div class="availability-content" id="availabilityContent"></div>
+                </section>
+            </section>
 
-    <!-- SETTINGS -->
-    <section class="view" id="settingsView">
-      <section class="panel narrow">
-        <div class="panel-head">
-          <div>
-            <h2>Cài đặt dữ liệu</h2>
-            <p>Dữ liệu được lưu trên trình duyệt bằng LocalStorage.</p>
-          </div>
-        </div>
+            <!-- SETTINGS -->
+            <section class="view" id="settingsView">
+                <section class="panel narrow">
+                    <div class="panel-head">
+                        <div>
+                            <h2>Cài đặt dữ liệu</h2>
+                            <p>Dữ liệu được lưu trên trình duyệt bằng LocalStorage.</p>
+                        </div>
+                    </div>
 
-        <div class="setting-row">
-          <div>
-            <strong>Khôi phục dữ liệu mẫu</strong>
-            <span>Thay thế dữ liệu hiện tại bằng danh sách mẫu.</span>
-          </div>
-          <button class="btn danger" id="resetData">Khôi phục</button>
-        </div>
+                    <div class="setting-row">
+                        <div>
+                            <strong>Khôi phục dữ liệu mẫu</strong>
+                            <span>Thay thế dữ liệu hiện tại bằng danh sách mẫu.</span>
+                        </div>
+                        <button class="btn danger" id="resetData">Khôi phục</button>
+                    </div>
 
-        <div class="setting-row">
-          <div>
-            <strong>Xóa toàn bộ dữ liệu</strong>
-            <span>Xóa tất cả phòng và lịch đặt trên trình duyệt này.</span>
-          </div>
-          <button class="btn danger-light" id="clearData">Xóa dữ liệu</button>
-        </div>
-      </section>
-    </section>
-  </main>
-</div>
-
-<!-- ROOM MODAL -->
-<div class="modal-backdrop" id="roomModal">
-  <section class="modal">
-    <div class="modal-head">
-      <div>
-        <h2 id="roomModalTitle">Thêm phòng</h2>
-        <p>Nhập thông tin phòng họp.</p>
-      </div>
-      <button class="icon-btn" id="closeRoomModal">×</button>
+                    <div class="setting-row">
+                        <div>
+                            <strong>Xóa toàn bộ dữ liệu</strong>
+                            <span>Xóa tất cả phòng và lịch đặt trên trình duyệt này.</span>
+                        </div>
+                        <button class="btn danger-light" id="clearData">Xóa dữ liệu</button>
+                    </div>
+                </section>
+            </section>
+        </main>
     </div>
-    <form id="roomForm" class="form-grid">
-      <input type="hidden" id="roomId">
 
-      <label>
+    <!-- ROOM MODAL -->
+    <div class="modal-backdrop" id="roomModal">
+        <section class="modal">
+            <div class="modal-head">
+                <div>
+                    <h2 id="roomModalTitle">Thêm phòng</h2>
+                    <p>Nhập thông tin phòng họp.</p>
+                </div>
+                <button class="icon-btn" id="closeRoomModal">×</button>
+            </div>
+            <form id="roomForm" class="form-grid">
+                <input type="hidden" id="roomId">
+
+                <label>
         <span>Tên phòng *</span>
         <input id="roomName" maxlength="60">
         <small id="roomNameError"></small>
       </label>
 
-      <label>
+                <label>
         <span>Mã phòng *</span>
         <input id="roomCode" maxlength="12">
         <small id="roomCodeError"></small>
       </label>
 
-      <label>
+                <label>
         <span>Sức chứa *</span>
         <input id="roomCapacity" type="number" min="1" max="200">
         <small id="roomCapacityError"></small>
       </label>
 
-      <label>
+                <label>
         <span>Trạng thái *</span>
         <select id="roomStatus">
           <option value="active">Hoạt động</option>
@@ -295,55 +297,55 @@
         </select>
       </label>
 
-      <label class="full">
+                <label class="full">
         <span>Vị trí *</span>
         <input id="roomLocation" maxlength="100">
         <small id="roomLocationError"></small>
       </label>
 
-      <label class="full">
+                <label class="full">
         <span>Thiết bị</span>
         <input id="roomEquipment" maxlength="180">
       </label>
 
-      <label class="full">
+                <label class="full">
         <span>Mô tả</span>
         <textarea id="roomDescription" rows="4" maxlength="300"></textarea>
       </label>
-    </form>
-    <div class="modal-foot">
-      <button class="btn ghost" id="cancelRoom">Hủy</button>
-      <button class="btn primary" id="saveRoom">Lưu thông tin</button>
+            </form>
+            <div class="modal-foot">
+                <button class="btn ghost" id="cancelRoom">Hủy</button>
+                <button class="btn primary" id="saveRoom">Lưu thông tin</button>
+            </div>
+        </section>
     </div>
-  </section>
-</div>
 
-<!-- BOOKING MODAL -->
-<div class="modal-backdrop" id="bookingModal">
-  <section class="modal">
-    <div class="modal-head">
-      <div>
-        <h2 id="bookingModalTitle">Đặt phòng</h2>
-        <p>Chọn phòng và khoảng thời gian sử dụng.</p>
-      </div>
-      <button class="icon-btn" id="closeBookingModal">×</button>
-    </div>
-    <form id="bookingForm" class="form-grid">
-      <input type="hidden" id="bookingId">
+    <!-- BOOKING MODAL -->
+    <div class="modal-backdrop" id="bookingModal">
+        <section class="modal">
+            <div class="modal-head">
+                <div>
+                    <h2 id="bookingModalTitle">Đặt phòng</h2>
+                    <p>Chọn phòng và khoảng thời gian sử dụng.</p>
+                </div>
+                <button class="icon-btn" id="closeBookingModal">×</button>
+            </div>
+            <form id="bookingForm" class="form-grid">
+                <input type="hidden" id="bookingId">
 
-      <label class="full">
+                <label class="full">
         <span>Phòng *</span>
         <select id="bookingRoom"></select>
         <small id="bookingRoomError"></small>
       </label>
 
-      <label>
+                <label>
         <span>Ngày sử dụng *</span>
         <input id="bookingDate" type="date">
         <small id="bookingDateError"></small>
       </label>
 
-      <label>
+                <label>
         <span>Trạng thái</span>
         <select id="bookingStatus">
           <option value="reserved">Đã đặt</option>
@@ -351,66 +353,67 @@
         </select>
       </label>
 
-      <label>
+                <label>
         <span>Giờ bắt đầu *</span>
         <input id="bookingStart" type="time">
         <small id="bookingStartError"></small>
       </label>
 
-      <label>
+                <label>
         <span>Giờ kết thúc *</span>
         <input id="bookingEnd" type="time">
         <small id="bookingEndError"></small>
       </label>
 
-      <label class="full">
+                <label class="full">
         <span>Ghi chú sử dụng</span>
         <textarea id="bookingNote" rows="3" maxlength="200"
                   placeholder="VD: Kiểm tra thiết bị trước khi sử dụng"></textarea>
       </label>
 
-      <div class="full conflict-box hidden" id="conflictBox"></div>
-    </form>
-    <div class="modal-foot">
-      <button class="btn ghost" id="cancelBooking">Hủy</button>
-      <button class="btn primary" id="saveBooking">Lưu lịch đặt</button>
+                <div class="full conflict-box hidden" id="conflictBox"></div>
+            </form>
+            <div class="modal-foot">
+                <button class="btn ghost" id="cancelBooking">Hủy</button>
+                <button class="btn primary" id="saveBooking">Lưu lịch đặt</button>
+            </div>
+        </section>
     </div>
-  </section>
-</div>
 
-<!-- DETAIL MODAL -->
-<div class="modal-backdrop" id="detailModal">
-  <section class="modal detail-modal">
-    <div class="modal-head">
-      <div>
-        <h2 id="detailTitle">Chi tiết phòng</h2>
-        <p>Thông tin phòng và lịch đặt gần đây.</p>
-      </div>
-      <button class="icon-btn" id="closeDetailModal">×</button>
+    <!-- DETAIL MODAL -->
+    <div class="modal-backdrop" id="detailModal">
+        <section class="modal detail-modal">
+            <div class="modal-head">
+                <div>
+                    <h2 id="detailTitle">Chi tiết phòng</h2>
+                    <p>Thông tin phòng và lịch đặt gần đây.</p>
+                </div>
+                <button class="icon-btn" id="closeDetailModal">×</button>
+            </div>
+            <div id="detailBody"></div>
+            <div class="modal-foot">
+                <button class="btn ghost" id="closeDetail">Đóng</button>
+                <button class="btn primary" id="editFromDetail">Chỉnh sửa</button>
+            </div>
+        </section>
     </div>
-    <div id="detailBody"></div>
-    <div class="modal-foot">
-      <button class="btn ghost" id="closeDetail">Đóng</button>
-      <button class="btn primary" id="editFromDetail">Chỉnh sửa</button>
+
+    <!-- CONFIRM -->
+    <div class="confirm-backdrop" id="confirmDialog">
+        <section class="confirm-box">
+            <div class="confirm-icon">!</div>
+            <h2 id="confirmTitle">Xác nhận</h2>
+            <p id="confirmMessage"></p>
+            <div class="confirm-actions">
+                <button class="btn ghost" id="confirmCancel">Hủy</button>
+                <button class="btn danger" id="confirmAccept">Xác nhận</button>
+            </div>
+        </section>
     </div>
-  </section>
-</div>
 
-<!-- CONFIRM -->
-<div class="confirm-backdrop" id="confirmDialog">
-  <section class="confirm-box">
-    <div class="confirm-icon">!</div>
-    <h2 id="confirmTitle">Xác nhận</h2>
-    <p id="confirmMessage"></p>
-    <div class="confirm-actions">
-      <button class="btn ghost" id="confirmCancel">Hủy</button>
-      <button class="btn danger" id="confirmAccept">Xác nhận</button>
-    </div>
-  </section>
-</div>
+    <div class="toast" id="toast"></div>
 
-<div class="toast" id="toast"></div>
-
-<script src="js/app.js"></script>
+    <script src="app.js"></script>
 </body>
+
 </html>
