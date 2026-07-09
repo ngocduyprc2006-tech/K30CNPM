@@ -1,6 +1,5 @@
 (() => {
 "use strict";
-
 const ROOM_KEY = "room_manager_rooms_v2";
 const BOOKING_KEY = "room_manager_bookings_v2";
 const OPEN_MINUTES = 8 * 60;
