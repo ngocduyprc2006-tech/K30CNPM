@@ -1,5 +1,4 @@
 ROOM MANAGER COMPLETE
-
 Bản này giữ đúng các chức năng quản lý phòng:
 - Quản lý danh sách phòng.
 - Xem lịch sử đã sử dụng phòng.
